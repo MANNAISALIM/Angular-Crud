@@ -1,0 +1,273 @@
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" [routerLink]="['/home']">E-FACTORY</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="chercher" aria-label="Search">
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" (click)="logout()" style="cursor: pointer;" [routerLink]="['']">Déconnexion</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/home']">
+              <hr>
+              <span class="fa fa-home" data-feather="home"></span>
+              Tableau de bord <span class="sr-only">(current)</span>
+            </a>
+            <hr>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/commands']">
+              <span class="fa fa-laptop" data-feather="file"></span>
+              Commandes
+            </a>
+            <hr>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/camions']">
+              <span class="fa fa-puzzle-piece" data-feather="shopping-cart"></span>
+              Véhécules
+            </a>
+            <hr>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/employees']">
+              <span  class="fa fa-user" data-feather="users"></span>
+              Employés
+            </a>
+            <hr>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/products']">
+              <span class="fa fa-cart-plus" data-feather="bar-chart-2"></span>
+              Produits
+            </a>
+            <hr>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/clients']">
+              <span class="fa fa-cart-plus" data-feather="bar-chart-2"></span>
+              Clients
+            </a>
+            <hr>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">GESTION DES EMPLOYES</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <a class="btn btn-sm btn-outline-primary" href="https://twitter.com/Mannaiselim1996">Twitter</a>
+            <a class="btn btn-sm btn-outline-primary" href="https://www.facebook.com/mannai.selim.79">Facebook</a>
+          </div>
+          <a href="https://www.linkedin.com/in/salim-mannai-251700151/"  class="btn btn-sm btn-outline-info ">
+            <span data-feather="calendar"></span>
+            Linkedin
+          </a>
+        </div>
+      </div>
+      <!--
+            <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+      -->
+      <br>
+      <div class="row">
+        <div class="col">
+          <a href="#pjt" class="btn btn-primary" data-toggle="collapse" style="color: #fff;">Nouveau Employé</a>
+        </div>
+      </div>
+      <div class="container my-5">
+
+        <form [formGroup]="myForm" (ngSubmit)="addcamion()" id="pjt" class="main-container collapse in">
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="title"> Titre:</label>
+              <input class="form-control" type="text" name="title" id="title" formControlName="title" >
+              <div *ngIf="title.touched && title.invalid" >
+                <small *ngIf="title.errors.required" class="text-danger">* champs requis</small>
+                <small *ngIf="title.errors.minlength" class="text-danger">longueur minimale égale à 5</small>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="title">Description: </label>
+              <input class="form-control" type="text" name="description" id="description" formControlName="description" >
+              <div *ngIf="description.touched && description.invalid" >
+                <small *ngIf="description.errors.required" class="text-danger">* champs requis</small>
+                <small *ngIf="description.errors.minlength" class="text-danger">longueur minimale égale à 10</small>
+              </div>
+            </div>
+            <div class="form-group col-md-3">
+              <label for="title"> Date de realisation :</label>
+              <input class="form-control" type="text" name="date" id="date" formControlName="date"  placeholder="AAAA-MM-JJ">
+              <div *ngIf="date.touched && date.invalid" >
+                <small *ngIf="date.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="title"> Image: 1</label>
+              <input class="form-control" type="text" name="image1" id="image1" formControlName="img1" >
+              <div *ngIf="img1.touched && img1.invalid" >
+                <small *ngIf="img1.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="title"> 2</label>
+              <input class="form-control" type="text" name="image2" id="image2" formControlName="img2" >
+              <div *ngIf="img2.touched && img2.invalid" >
+                <small *ngIf="img2.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="title">3</label>
+              <input class="form-control" type="text" name="image3" id="image3" formControlName="img3" >
+              <div *ngIf="img3.touched && img3.invalid" >
+                <small *ngIf="img3.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="title"> Image: 4</label>
+              <input class="form-control" type="text" name="image1" id="imag4" formControlName="img4" >
+              <div *ngIf="img4.touched && img4.invalid" >
+                <small *ngIf="img4.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="title"> 5</label>
+              <input class="form-control" type="text" name="imag5" id="imag5" formControlName="img5" >
+              <div *ngIf="img5.touched && img5.invalid" >
+                <small *ngIf="img5.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="title">6</label>
+              <input class="form-control" type="text" name="image6" id="image6" formControlName="img6" >
+              <div *ngIf="img6.touched && img6.invalid" >
+                <small *ngIf="img6.errors.required" class="text-danger"> * champs requis </small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col">
+              <input type="submit" value="Ajouter" [disabled]="myForm.invalid" class="btn btn-primary">
+            </div>
+          </div>
+          <hr>
+          <br>
+        </form>
+
+        <form [formGroup]="myForm1" (ngSubmit)="altercamion()" id="prd1" class="collapse" >
+          <h3> Modifier un projet  </h3>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputEmail4">Titre</label>
+              <input type="email" class="form-control" id="inputEmail4" formControlName="title" >
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputPassword4">Date:</label>
+              <input type="text" class="form-control" id="inputPassword4" formControlName="date">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Description :</label>
+            <textarea class="form-control" id="inputAddress" rows="3" formControlName="description"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">Image 1:</label>
+              <input type="text" class="form-control" id="inputCity" formControlName="img1">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity1">2:</label>
+              <input type="text" class="form-control" id="inputCity1" formControlName="img2">
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="inputZip">3 :</label>
+              <input type="text" class="form-control" id="inputZip" formControlName="img3">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputCity">Image 4:</label>
+              <input type="text" class="form-control" id="inputCity4" formControlName="img4">
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity1">5:</label>
+              <input type="text" class="form-control" id="inputCity5" formControlName="img5">
+            </div>
+
+            <div class="form-group col-md-4">
+              <label for="inputZip">6 :</label>
+              <input type="text" class="form-control" id="inputZip6" formControlName="img6">
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary" >Envoyer les modifications</button>
+          <br>
+          <br>
+          <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>succès !</strong> votre modification a été effectuer avec succès.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <hr>
+          <br>
+        </form>
+
+
+        <h3> Liste des employées </h3>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div *ngIf="projectList.length == 0" class="alert alert-warning">Aucun employé</div>
+            <div class="table-responsive">
+              <table *ngIf="projectList.length > 0" class="table table-striped table-sm">
+                <thead>
+                <tr>
+                  <th >ID</th>
+                  <th>Imatriculation</th>
+                  <th>Poids</th>
+                  <th></th>
+                  <th></th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let pjt of projectList">
+                  <th >{{ pjt.id }}</th>
+                  <td >{{ pjt.title }}</td>
+                  <td >{{ pjt.url }}</td>
+                  <td>
+                    <button class="btn btn-danger mx-3"   (confirm)="delete(pjt)" (cancel)=" cancelClicked = true" >Supprimer</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-warning" (click)="altid(pjt)" data-toggle="collapse" data-target="#prd1">Mettre à jour</button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>

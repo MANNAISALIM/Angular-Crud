@@ -1,0 +1,89 @@
+
+<body>
+<div class="cont">
+  <div class="form sign-in">
+    <h2>Se connecter</h2>
+    <br>
+    <label>
+      <span> email</span>
+      <input type="email"  id="eml">
+    </label>
+    <label>
+      <span>mot de passe</span>
+      <input type="password"  id="psswd" >
+    </label>
+    <button  type="button"  (click)="login()"  class="submit ">connecter</button>
+    <p class="forgot-pass">Mot de passe oublié ?</p>
+    <div class="social-media">
+
+    </div>
+  </div>
+  <div class="sub-cont">
+    <div class="img">
+      <div class="img-text m-up">
+        <h2>Nouveau ici ?</h2>
+        <p> Inscrivez-vous et découvrez de nombreuses nouvelles opportunités!</p>
+      </div>
+      <div class="img-text m-in">
+        <h2>Un de nous?</h2>
+        <p>Si vous avez déjà un compte, connectez-vous. Vous nous avez manqué!</p>
+      </div>
+      <div class="img-btn">
+        <span class="m-up">S'inscrire</span>
+        <span class="m-in">connect</span>
+      </div>
+    </div>
+    <form  [formGroup]="angForm" novalidate >
+      <div class="form sign-up" >
+        <h2>S'inscrire</h2>
+        <label>
+
+          <input type="text" formControlName="name" placeholder="Nom">
+          <div *ngIf="name.touched && name.invalid" >
+            <small *ngIf="name.errors.required" class="text-danger">* champs requis</small>
+          </div>
+        </label>
+        <label>
+          <input type="text" formControlName="phone" placeholder="Numéro de téléphone" style="height: 40px">
+        </label>
+        <label>
+          <input type="email"formControlName="email" placeholder="Adresse Email" style="height: 40px">
+          <div *ngIf="email.touched && email.invalid" >
+            <small *ngIf="email.errors.required" class="text-danger"> * champs requis </small>
+            <small *ngIf="email.errors.email" class="text-danger">Email invalide<br></small>
+          </div>
+        </label>
+        <label>
+
+          <input type="password" formControlName="pass"  placeholder="Mot de passe" style="height: 40px">
+          <div *ngIf="pass.touched && pass.invalid" >
+            <small *ngIf="pass.errors.required" class="text-danger"> * champs requis </small>
+          </div>
+        </label>
+        <label>
+          <input type="password" formControlName="repassword" placeholder="Confirmez le mot de passe" style="height: 40px">
+          <div *ngIf="repassword.touched && repassword.invalid" >
+            <small *ngIf="repassword.errors.required" class="text-danger"> * champs requis </small>
+          </div>
+          <div *ngIf=" repassword.valid &&  repassword.value != pass.value"  class="text-danger">
+            le mot de passe saisi ne correspond pas
+          </div>
+
+        </label>
+        <br>
+        <div *ngIf="alert" class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>  Enregistré avec succès !</strong> essayez de vous connecter
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          </button>
+        </div>
+        <button id="sub" type="button" [disabled]="angForm.pristine || angForm.invalid"  (click)="addusr()"  class="submit ">S'inscrire maintenant</button>
+
+      </div>
+    </form>
+    <br>
+  </div>
+
+</div>
+
+</body>
+
